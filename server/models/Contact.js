@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
-const dbConnect = require('../database/mongooseDb').connection;
 const config = require("../config/config");
 
 
@@ -14,7 +13,7 @@ const ContactSchema = new Schema({
   email: {type: String, required: true}
 });
 
-const conn = mongoose.createConnection(config.dbUrl);
+const conn = mongoose.connection;
 autoIncrement.initialize(conn);
 ContactSchema.plugin(autoIncrement.plugin, 'Contact')
 
