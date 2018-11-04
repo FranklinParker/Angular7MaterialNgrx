@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const config = require("../config/config");
 console.log('db connection:', config);
+let mongoDB = undefined;
 
 function connectToDb() {
 	const promiseLib = global.Promise;
 	mongoose.Promise = global.Promise;
-	const mongoDB = mongoose.connect(config.dbUrl, {
+	mongoDB = mongoose.connect(config.dbUrl, {
 		promiseLibrary: promiseLib // Deprecation issue again
 	});
 	mongoDB
@@ -18,6 +19,6 @@ function connectToDb() {
 }
 
 module.exports.connectToDb = connectToDb;
-
+module.exports.connection = mongoDB;
 
 
