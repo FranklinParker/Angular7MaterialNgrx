@@ -4,11 +4,13 @@ import { NavHeaderComponent } from './components/nav-header/nav-header.component
 import {SharedModule} from '../shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import {RouterModule} from '@angular/router';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
     NavHeaderComponent,
-    HomeComponent
+    HomeComponent,
+    SideNavComponent
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import {RouterModule} from '@angular/router';
   ],
   exports: [
     NavHeaderComponent,
+    SideNavComponent,
     HomeComponent
   ]
 })

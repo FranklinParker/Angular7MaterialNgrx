@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-nav-header',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-header.component.scss']
 })
 export class NavHeaderComponent implements OnInit {
-
+  @Output() toggleSideNav = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
