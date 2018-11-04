@@ -88,19 +88,9 @@ const getContacts = async (params)=>{
   }
   try {
     const contactRecords = await contactQuery;
-    const records = [];
-    contactRecords.forEach(record=>{
-      console.log('record', record);
-      const copyRecord = Object.assign({}, record._doc);
-      copyRecord.id = copyRecord._id;
-      copyRecord.version = copyRecord.__v;
-      copyRecord._id = undefined;
-      copyRecord.__v = undefined;
-      records.push(copyRecord);
-    });
     return {
       success: true,
-      records: records,
+      records: contactRecords,
       numberRecords: count
     };
   } catch (e) {
