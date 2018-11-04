@@ -1,6 +1,6 @@
 <mat-sidenav-container fullscreen>
  <mat-sidenav #sideNav>
-   <app-side-nav ></app-side-nav>
+   <app-side-nav (closeSidNav)="sideNav.close()"></app-side-nav>
  </mat-sidenav>
   <app-nav-header (toggleSideNav)="sideNav.toggle()"></app-nav-header>
 
