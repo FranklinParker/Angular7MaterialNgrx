@@ -2,9 +2,7 @@
  <mat-sidenav #sideNav>
    <app-side-nav ></app-side-nav>
  </mat-sidenav>
-  <mat-toolbar color="primay">
-    <app-nav-header (toggleSideNav)="sideNav.toggle()"></app-nav-header>
+  <app-nav-header (toggleSideNav)="sideNav.toggle()"></app-nav-header>
 
-  </mat-toolbar>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
