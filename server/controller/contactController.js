@@ -19,12 +19,7 @@ const saveContact = async (params) => {
 				message: 'This Contact email exists'
 			};
 		}
-		const contact = new Contact({
-			firstName: contactData.firstName,
-			lastName: contactData.lastName,
-			email: contactData.email,
-			phone: contactData.phone
-		});
+		const contact = new Contact(contactData);
 		const contactRec = await contact.save();
 		const numberRecords = await Contact.count();
 		return {
