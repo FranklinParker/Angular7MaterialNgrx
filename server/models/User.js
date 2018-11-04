@@ -42,7 +42,7 @@ UserSchema.methods.toJSON = function () {
   var user = this;
   var userObject = user.toObject();
 
-  return _.pick(userObject, ['_id', 'email','firstName','lastName','roles']);
+  return _.pick(userObject, ['_id', 'email', 'firstName', 'lastName', 'roles']);
 };
 
 UserSchema.plugin(mongooseUniqueValidator);
@@ -51,40 +51,39 @@ UserSchema.plugin(mongooseUniqueValidator);
 const User = mongoose.model('User', UserSchema);
 
 const findUserConfirmPassword = async (email, password) => {
-    try{
-			const user = await User.findOne({email: email});
-			if(!user){
-			  return {
-			    success: false,
-          message: 'Invalid Login'
-        }
+  try {
+    const user = await User.findOne({email: email});
+    if (!user) {
+      return {
+        success: false,
+        message: 'Invalid Login'
       }
-			const isMatch = await bcrypt.compare(password, user.password);
-      if(isMatch){
-				const token = jwt.sign({email: user.email, userId: user._id},
-					config.secret, {expiresIn: config.expireJwtSeconds});
-				return {
-					success: true,
-					record: user,
-          token: token,
-					expiresInSeconds: config.expireJwtSeconds
-				}
-      }else{
-				return {
-					success: false,
-					message:  'Invalid Login'
-				}
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      const token = jwt.sign({email: user.email, userId: user._id},
+        config.secret, {expiresIn: config.expireJwtSeconds});
+      return {
+        success: true,
+        record: user,
+        token: token,
+        expiresInSeconds: config.expireJwtSeconds
       }
-
-
-		}catch(e){
-			return {
-				success: false,
-				message: 'Login Failed - System Error'
-			}
-
+    } else {
+      return {
+        success: false,
+        message: 'Invalid Login'
+      }
     }
 
+
+  } catch (e) {
+    return {
+      success: false,
+      message: 'Login Failed - System Error'
+    }
+
+  }
 
 
 }

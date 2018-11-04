@@ -1,5 +1,5 @@
 {
-    "dbUrl": "mongodb://localhost:27017/starter_db",
+    "dbUrl": "mongodb://localhost:27017/contact_angular7",
     "JWT_SECRET":"ghgghghgk676767",
     "EXPIRE_JWT_SECONDS": 7200
 

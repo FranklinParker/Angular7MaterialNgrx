@@ -39,7 +39,9 @@ module.exports.initRouter = (app) => {
   app.post('/api/register', apiHandler(userController.registerUser));
   app.post('/api/login', apiHandler(userController.login));
   //
-  app.post('/api/contact', checkAuth, apiHandler(contactController.saveContact));
+  app.post('/api/contact',
+    // checkAuth ,
+    apiHandler(contactController.saveContact));
   app.put('/api/contact', checkAuth, apiHandler(contactController.updateContact));
   app.get('/api/contact', checkAuth, apiHandler(contactController.getContacts));
 
