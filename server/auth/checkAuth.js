@@ -10,7 +10,12 @@ module.exports = (req, res, next) => {
 		next();
 
 	}catch(e){
-		res.status(401).json({message: 'Auth Failed'});
+		if(config.authOverride){
+			next();
+		}else{
+      res.status(401).json({message: 'Auth Failed'});
+
+    }
 
 	}
 
