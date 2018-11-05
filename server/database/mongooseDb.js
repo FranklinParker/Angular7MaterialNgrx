@@ -19,6 +19,5 @@ function connectToDb() {
 }
 
 module.exports.connectToDb = connectToDb;
-module.exports.connection = mongoDB;
 
 
