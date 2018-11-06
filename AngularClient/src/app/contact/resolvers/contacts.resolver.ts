@@ -21,8 +21,7 @@ export class ContactsResolver  implements Resolve<Contact[]> {
    * @param state
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Contact[]> {
-    console.log('contacts route');
-    return this.store
+    const result =  this.store
       .pipe (
         select(getAllContacts),
         tap(contacts=>{
@@ -33,6 +32,8 @@ export class ContactsResolver  implements Resolve<Contact[]> {
         filter(contacts => !!contacts),
         first()
       );
+    return result;
+
   }
 
 }
