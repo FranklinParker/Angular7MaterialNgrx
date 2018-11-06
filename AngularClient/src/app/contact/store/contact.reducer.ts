@@ -1,4 +1,4 @@
-import {ContactActions} from './contact.actions';
+import {ContactActions, ContactActionTypes} from './contact.actions';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 import {Contact} from '../models/contact';
 
@@ -26,7 +26,6 @@ const BLANK_RECORD: Contact = {
 export const initialState: ContactState = adapter.getInitialState({
   recordsLoaded: false,
   recordsLoading: false,
-  pageInfo: undefined,
   contact: BLANK_RECORD,
   deletedId: undefined,
   recordUpdating: false
@@ -36,6 +35,8 @@ export const initialState: ContactState = adapter.getInitialState({
 
 export function reducer(state = initialState, action: ContactActions): ContactState {
   switch (action.type) {
+    case ContactActionTypes.ContactsLoaded:
+      return adapter.addAll(action.payload.contacts, {...state, recordsLoaded: true});
 
     default:
       return state;

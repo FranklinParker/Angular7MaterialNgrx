@@ -21,11 +21,12 @@ export class ContactsResolver  implements Resolve<Contact[]> {
    * @param state
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Contact[]> {
+    console.log('contacts route');
     return this.store
       .pipe (
         select(getAllContacts),
         tap(contacts=>{
-          if(!contacts){
+          if(!contacts || contacts.length===0){
             this.store.dispatch( new LoadContacts())
           }
         }),
