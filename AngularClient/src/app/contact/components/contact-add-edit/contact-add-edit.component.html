@@ -1,0 +1,58 @@
+<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+  <form (submit)="onSubmit(form)"
+        #form="ngForm"
+        class="container mt-5 custom-margin-top">
+    <div class="container">
+      <div class="row custom-margin-top">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input matInput
+                   placeholder="First Name "
+                   [(ngModel)]="contact.firstName"
+                   #firstName="ngModel"
+                   name="firstName"
+                   required>
+            <mat-error *ngIf="firstName.invalid">Please enter valid First Name</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input matInput
+                   placeholder="Last Name "
+                   [(ngModel)]="contact.lastName"
+                   #lastName="ngModel"
+                   name="lastName"
+                   required>
+            <mat-error *ngIf="lastName.invalid">Please enter valid Last Name</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <mat-select [(ngModel)]="contact.groupCode"
+                        #groupCode="ngModel"
+                        name="groupCode"
+                        required
+                        placeholder="Select group">
+              <mat-option
+                *ngFor="let group of groups"
+                [value]="group.code">
+                {{group.description}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="groupCode.invalid">Select Group</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row custom-margin-top custom-margin-bottom">
+        <div class="col-md-12">
+          <div class="button-row float-right">
+            <button mat-flat-button color="acent"
+                    [disabled]="form.invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

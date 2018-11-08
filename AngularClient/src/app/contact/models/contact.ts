@@ -1,10 +1,11 @@
 import {ContactHistory} from './contactHistory';
 
 export interface Contact {
-  id: number;
+  id?: number;
   firstName: string;
   lastName: string;
-  email: string;
-  phone: string;
-  contactHistories: ContactHistory[];
+  email?: string;
+  phone?: string;
+  contactHistories?: ContactHistory[];
+  groupCode?: string;
 }
