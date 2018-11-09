@@ -10,9 +10,10 @@ import * as fromContact from './store/contact.reducer';
 import { ContactAddEditComponent } from './components/contact-add-edit/contact-add-edit.component';
 import {FormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
 
 @NgModule({
-  declarations: [ContactHomeComponent, ContactAddEditComponent],
+  declarations: [ContactHomeComponent, ContactAddEditComponent, ContactListComponent],
   imports: [
     CommonModule,
     FormsModule,
