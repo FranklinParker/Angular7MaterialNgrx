@@ -5,6 +5,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../reducers';
 import {getAllContacts} from '../../store/contact.selector';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {SelectContact} from '../../store/contact.actions';
 
 @Component({
   selector: 'app-contact-list-expand',
@@ -69,6 +70,7 @@ export class ContactListExpandComponent implements OnInit {
     }else{
       this.expandedElement = element;
     }
+    this.store.dispatch(new SelectContact({ contact: element}))
     //this.tableElemService.setPeriodicElement(this.expandedElement);
 
   }

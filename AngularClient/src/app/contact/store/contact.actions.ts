@@ -3,7 +3,8 @@ import {Contact} from '../models/contact';
 
 export enum ContactActionTypes {
   LoadContacts = '[LoadContacts] Load Contacts',
-  ContactsLoaded = '[ContactsLoaded] Contacts Loaded'
+  ContactsLoaded = '[ContactsLoaded] Contacts Loaded',
+  SelectContact = '[SelectContact] select contact'
 
 }
 
@@ -19,5 +20,14 @@ export class ContactsLoaded implements Action {
   }
 
 }
+
+export class SelectContact implements Action {
+  readonly type = ContactActionTypes.SelectContact;
+  constructor(public payload: { contact: Contact}){
+
+  }
+
+}
 export type ContactActions = LoadContacts
-  | ContactsLoaded;
+  | ContactsLoaded
+  | SelectContact;

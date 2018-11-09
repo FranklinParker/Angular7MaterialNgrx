@@ -1,6 +1,7 @@
 import {ContactActions, ContactActionTypes} from './contact.actions';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 import {Contact} from '../models/contact';
+import {state} from '@angular/animations';
 
 export const adapter: EntityAdapter<Contact> =
   createEntityAdapter<Contact>();
@@ -37,7 +38,8 @@ export function reducer(state = initialState, action: ContactActions): ContactSt
   switch (action.type) {
     case ContactActionTypes.ContactsLoaded:
       return adapter.addAll(action.payload.contacts, {...state, recordsLoaded: true});
-
+    case ContactActionTypes.SelectContact:
+      return {...state, contact: action.payload.contact};
     default:
       return state;
   }
