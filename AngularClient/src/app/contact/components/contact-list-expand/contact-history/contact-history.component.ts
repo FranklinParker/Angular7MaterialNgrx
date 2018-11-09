@@ -33,7 +33,6 @@ export class ContactHistoryComponent implements OnInit {
         this.form.patchValue({
           lastName: this.contact.lastName,
           firstName: this.contact.firstName,
-
         });
 
       });
@@ -41,7 +40,7 @@ export class ContactHistoryComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup){
-
+      console.log('form ', form.value);
   }
 
 }

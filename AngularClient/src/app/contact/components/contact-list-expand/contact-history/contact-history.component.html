@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-content>
-    <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+    <form (ngSubmit)="onSubmit(form)"
+          [formGroup]="form"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px">
       <mat-form-field>
         <input matInput
                placeholder="First Name"
@@ -11,12 +15,13 @@
                placeholder="Last Name"
                formControlName="lastName">
       </mat-form-field>
+      <mat-action-row>
+        <button mat-raised-button type="submit">
+          Save
+        </button>
+      </mat-action-row>
     </form>
-    <mat-action-row>
-      <button mat-raised-button>
-        Save
-      </button>
-    </mat-action-row>
+
   </mat-card-content>
 </mat-card>
 
