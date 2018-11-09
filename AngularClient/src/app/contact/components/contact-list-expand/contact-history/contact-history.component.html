@@ -1,6 +1,22 @@
 <mat-card>
   <mat-card-content>
-    {{contact.lastName}}
+    <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+      <mat-form-field>
+        <input matInput
+               placeholder="First Name"
+               formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               placeholder="Last Name"
+               formControlName="lastName">
+      </mat-form-field>
+    </form>
+    <mat-action-row>
+      <button mat-raised-button>
+        Save
+      </button>
+    </mat-action-row>
   </mat-card-content>
 </mat-card>
 
