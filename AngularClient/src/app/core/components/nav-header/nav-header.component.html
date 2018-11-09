@@ -1,5 +1,70 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="toggleSideNav.emit()">
+  <button mat-icon-button
+          fxShow.gt-sm="false"
+          (click)="toggleSideNav.emit()">
     <mat-icon>menu</mat-icon>
   </button>
+  <div fxFlex fxLayout
+       fxLayoutAlign="flex-end"
+       fxShow.gt-sm="true"
+       fxShow="false">
+    <ng-container *ngIf="loggedInUser">
+      <ul  fxLayout fxLayoutGap="10px"
+           class="navigation-list-items">
+        <li><a routerLink="/" mat-button
+               routerLinkActive="mat-accent">Home</a>
+        </li>
+        <li><a routerLink="/contact" mat-button
+               routerLinkActive="mat-accent">Contacts</a>
+        </li>
+      </ul>
+      <ul fxLayout fxLayoutGap="10px" class="navigation-list-items">
+        <li><a mat-stroked-button (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+      <ul fxLayout
+          fxLayoutGap="10px"
+          class="navigation-list-items">
+        <li>
+          <a mat-button [matMenuTriggerFor]="mainMenu">Menu</a>
+          <mat-menu #mainMenu="matMenu"
+                    [overlapTrigger]="false">
+            <mat-label mat-menu-item routerLink="/">
+              <mat-icon>face</mat-icon>
+              Home
+            </mat-label>
+            <mat-label mat-menu-item routerLink="/contact">
+              <mat-icon>person_add</mat-icon>
+              Contacts
+            </mat-label>
+
+          </mat-menu>
+        </li>
+      </ul>
+    </ng-container>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-list-items">
+      <li><a routerLink="/test" mat-button
+             routerLinkActive="mat-accent">Test Page</a>
+      </li>
+    </ul>
+    <ng-container *ngIf="!loggedInUser">
+      <ul *ngIf="!loggedInUser" fxLayout fxLayoutGap="10px" class="navigation-list-items">
+        <li><a routerLink="/google" mat-button
+               routerLinkActive="mat-accent">Test Google Cloud</a>
+        </li>
+      </ul>
+      <ul *ngIf="!loggedInUser" fxLayout fxLayoutGap="10px" class="navigation-list-items">
+        <li><a routerLink="/login" mat-button
+               routerLinkActive="mat-accent">Login</a>
+        </li>
+      </ul>
+      <ul *ngIf="!loggedInUser"
+          fxLayout fxLayoutGap="10px"
+          class="navigation-list-items">
+        <li><a routerLink="/register" mat-button
+               routerLinkActive="mat-accent">Register</a>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
 </mat-toolbar>
