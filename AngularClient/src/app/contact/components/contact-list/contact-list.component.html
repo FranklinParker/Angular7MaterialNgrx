@@ -1,3 +1,66 @@
-<p>
-  contact-list works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <h2>Contacts</h2>
+  </mat-card-header>
+  <mat-card-content>
+    {{dataLoaded}}
+    {{showSpinner}}
+    <mat-spinner *ngIf="showSpinner"></mat-spinner>
+    <div *ngIf="!showSpinner">
+      <div *ngIf="dataLoaded">
+        <table mat-table #table
+               [dataSource]="dataSource" matSort >
+          <ng-container matColumnDef="id" >
+            <th mat-header-cell
+                *matHeaderCellDef >Id</th>
+            <td mat-cell *matCellDef="let element" >
+              <button mat-button (click)="edit(element)" color="primary">
+                {{element.id}}
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="firstName" >
+            <th mat-header-cell
+                *matHeaderCellDef >First Name</th>
+            <td mat-cell *matCellDef="let element" >
+              <button mat-button (click)="edit(element)" color="primary">
+                {{element.firstName}}
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="lastName" >
+            <th mat-header-cell
+                *matHeaderCellDef >Last Name</th>
+            <td mat-cell *matCellDef="let element" >
+              <button mat-button (click)="edit(element)" color="primary">
+                {{element.lastName}}
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete" >
+            <th mat-header-cell
+                *matHeaderCellDef >Delete</th>
+            <td mat-cell *matCellDef="let element" >
+              <button mat-button (click)="onDelete(element)" color="primary">
+                Delete
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              [ngClass]="{'highlight': selectedId === row.id}"
+              (click)="rowClicked(row)"></tr>
+        </table>
+        <mat-paginator [length]="totalRecords"
+                       [pageSize]="recordsPerPage"
+                       [pageSizeOptions]="pageSizeOptions"
+                       (page)="onChangedPage($event)"
+                       *ngIf="dataLoaded">
+        </mat-paginator>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
