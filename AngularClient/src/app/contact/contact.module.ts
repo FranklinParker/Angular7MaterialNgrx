@@ -11,10 +11,17 @@ import { ContactAddEditComponent } from './components/contact-add-edit/contact-a
 import {FormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { ContactListExpandComponent } from './components/contact-list-expand/contact-list-expand.component';
+import { ContactHistoryComponent } from './components/contact-list-expand/contact-history/contact-history.component';
 
 @NgModule({
-  declarations: [ContactHomeComponent, ContactAddEditComponent, ContactListComponent],
-  imports: [
+  declarations: [
+    ContactHomeComponent,
+    ContactAddEditComponent,
+    ContactListComponent,
+    ContactListExpandComponent,
+    ContactHistoryComponent]
+  , imports: [
     CommonModule,
     FormsModule,
     SharedModule,
