@@ -7,3 +7,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 table {
   width: 100%;
 }
+
+
+.mat-header-row{
+  background-color: black;
+  text-align: left;
+}
+
+.mat-header-cell{
+  color: white;
+  font-size: 14pt;
+}
