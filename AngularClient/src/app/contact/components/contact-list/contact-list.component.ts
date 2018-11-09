@@ -37,9 +37,7 @@ export class ContactListComponent implements OnInit {
       )
       .subscribe((contacts: Contact[]) => {
         this.contacts = contacts;
-        console.log('contacts', this.contacts);
         this.dataSource.data = this.contacts;
-        console.log('data source len:' + this.dataSource.data.length)
       });
   }
 
