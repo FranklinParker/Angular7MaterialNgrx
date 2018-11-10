@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppState} from '../../../../reducers';
 import {select, Store} from '@ngrx/store';
 import {getAllContacts, getSelectedContact} from '../../../store/contact.selector';
 import {Contact} from '../../../models/contact';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ContactsService} from '../../../service/contacts.service';
 
 @Component({
   selector: 'app-contact-history',
@@ -15,13 +16,14 @@ export class ContactHistoryComponent implements OnInit {
   form: FormGroup;
 
   constructor(private store: Store<AppState>,
-               private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private contactService: ContactsService) {
 
   }
 
   ngOnInit() {
-    this.form  = this.formBuilder.group({
-      lastName: [ '' , Validators.required],
+    this.form = this.formBuilder.group({
+      lastName: ['', Validators.required],
       firstName: ['', Validators.required]
     });
     this.store
@@ -39,8 +41,18 @@ export class ContactHistoryComponent implements OnInit {
 
   }
 
-  onSubmit(form: FormGroup){
-      console.log('form ', form.value);
+  onSubmit(form: FormGroup) {
+    console.log('form ', form.value);
+    const updateContact: Contact = Object.assign({}, this.contact);
+    updateContact.lastName = this.form.value.lastName;
+    updateContact.firstName = this.form.value.firstName;
+
+
+    this.contactService.updateContact(updateContact).subscribe(
+      (resp)=>{
+        console.log('udate resp', resp);
+      }
+    )
   }
 
 }

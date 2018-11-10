@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
+const updateIfCurrentPlugin = require('mongoose-update-if-current').updateIfCurrentPlugin;
 const config = require("../config/config");
 const _ = require('lodash');
 
@@ -22,6 +23,7 @@ const ContactSchema = new Schema({
 const conn = mongoose.connection;
 autoIncrement.initialize(conn);
 ContactSchema.plugin(autoIncrement.plugin, {model: 'Contact', startAt: 1});
+ContactSchema.plugin(updateIfCurrentPlugin);
 
 ContactSchema.methods.toJSON = function () {
   const contact = this;

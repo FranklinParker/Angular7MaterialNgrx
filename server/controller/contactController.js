@@ -54,7 +54,9 @@ const updateContact = async (params) => {
       lastName: contactData.lastName,
       email: contactData.email,
       phone: contactData.phone,
-      _id: contactData.id
+      contactHistories: contactData.contactHistories,
+      _id: contactData.id,
+      __v: contactData.version
     });
     const contactRec =  await Contact.updateOne({_id: contactData.id}, contact);
     return {

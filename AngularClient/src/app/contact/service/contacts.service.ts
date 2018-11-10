@@ -40,6 +40,11 @@ export class ContactsService {
         map((resp) => resp['records'])
       );
   }
+
+  public updateContact(contact: Contact){
+    return this.http.put(this.url, contact);
+
+  }
 }
 
 
