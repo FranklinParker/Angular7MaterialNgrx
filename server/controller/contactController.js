@@ -48,17 +48,22 @@ const updateContact = async (params) => {
   const contactData = params.actionData;
 
   try {
+    const updatedContact = await Contact.findById(contactData.id);
+    updatedContact.lastName = contactData.lastName;
+    updatedContact.firstName = contactData.firstName;
+    await updatedContact.save();
+    // const contact = new Contact({
+    //   firstName: contactData.firstName,
+    //   lastName: contactData.lastName,
+    //   email: contactData.email,
+    //   phone: contactData.phone,
+    //   contactHistories: contactData.contactHistories,
+    //   _id: contactData.id,
+    //   __v: contactData.version
+    // });
+    // const contactRec =  await Contact.updateOne({_id: contactData.id}, contact);
+    console.log('updated contact', updatedContact);
 
-    const contact = new Contact({
-      firstName: contactData.firstName,
-      lastName: contactData.lastName,
-      email: contactData.email,
-      phone: contactData.phone,
-      contactHistories: contactData.contactHistories,
-      _id: contactData.id,
-      __v: contactData.version
-    });
-    const contactRec =  await Contact.updateOne({_id: contactData.id}, contact);
     return {
       success: true,
       record: contactRec
