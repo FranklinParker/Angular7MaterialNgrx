@@ -40,6 +40,10 @@ export function reducer(state = initialState, action: ContactActions): ContactSt
       return adapter.addAll(action.payload.contacts, {...state, recordsLoaded: true});
     case ContactActionTypes.SelectContact:
       return {...state, contact: action.payload.contact};
+    case ContactActionTypes.ContactUpdated:{
+      return adapter.updateOne(action.payload.update,
+        {...state, contact: action.payload.contact});
+    }
     default:
       return state;
   }

@@ -5,6 +5,8 @@ import {getAllContacts, getSelectedContact} from '../../../store/contact.selecto
 import {Contact} from '../../../models/contact';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ContactsService} from '../../../service/contacts.service';
+import {Update} from '@ngrx/entity';
+import {ContactUpdate} from '../../../store/contact.actions';
 
 @Component({
   selector: 'app-contact-history',
@@ -49,8 +51,17 @@ export class ContactHistoryComponent implements OnInit {
 
 
     this.contactService.updateContact(updateContact).subscribe(
-      (resp)=>{
+      (resp) => {
         console.log('udate resp', resp);
+        if (resp['success']) {
+          const updateContact:Contact = resp['record'];
+          const update: Update<Contact> = {
+            id: updateContact.id,
+            changes: updateContact
+          };
+          this.store.dispatch(new ContactUpdate({
+            update: update, contact: updateContact}));
+        }
       }
     )
   }

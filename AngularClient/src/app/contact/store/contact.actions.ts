@@ -1,10 +1,12 @@
 import { Action } from '@ngrx/store';
 import {Contact} from '../models/contact';
+import {Update} from '@ngrx/entity';
 
 export enum ContactActionTypes {
   LoadContacts = '[LoadContacts] Load Contacts',
   ContactsLoaded = '[ContactsLoaded] Contacts Loaded',
-  SelectContact = '[SelectContact] select contact'
+  SelectContact = '[SelectContact] select contact',
+  ContactUpdated = '[ContactUpdated] update Contact'
 
 }
 
@@ -28,6 +30,17 @@ export class SelectContact implements Action {
   }
 
 }
+
+
+export class ContactUpdate implements Action {
+  readonly type = ContactActionTypes.ContactUpdated;
+  constructor(public payload: { update:Update<Contact>, contact: Contact}){
+
+  }
+
+}
+
 export type ContactActions = LoadContacts
   | ContactsLoaded
-  | SelectContact;
+  | SelectContact
+  | ContactUpdate;
