@@ -3,7 +3,7 @@ import {Contact} from '../../models/contact';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../reducers';
-import {getAllContacts} from '../../store/contact.selector';
+import {getAllContacts, getSelectedContact} from '../../store/contact.selector';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {SelectContact} from '../../store/contact.actions';
 
@@ -41,6 +41,20 @@ export class ContactListExpandComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.store
+    //   .pipe(
+    //     select(getSelectedContact)
+    //   )
+    //   .subscribe((contact: Contact)=>{
+    //     this.expandedElement = contact;
+    //     console.log('got selected contact', contact);
+    //     this.getContactList();
+    //   });
+    this.getContactList();
+
+  }
+
+  private getContactList(){
     this.store
       .pipe(
         select(getAllContacts)
@@ -48,7 +62,11 @@ export class ContactListExpandComponent implements OnInit {
       .subscribe((contacts: Contact[]) => {
         this.contacts = contacts;
         this.dataSource.data = this.contacts;
+        console.log('got contact list', this.expandedElement);
+
       });
+
+
   }
 
   onDelete( contact: Contact) {
@@ -71,7 +89,6 @@ export class ContactListExpandComponent implements OnInit {
       this.expandedElement = element;
     }
     this.store.dispatch(new SelectContact({ contact: element}))
-    //this.tableElemService.setPeriodicElement(this.expandedElement);
 
   }
 

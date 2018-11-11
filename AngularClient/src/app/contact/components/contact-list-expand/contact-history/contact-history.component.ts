@@ -60,9 +60,7 @@ export class ContactHistoryComponent implements OnInit {
             id: updateContact.id,
             changes: updateContact
           };
-          this.snackBar.open('Contact Updated', 'Update successful', {
-            duration: 9000
-          });
+
           this.store.dispatch(new ContactUpdate({
             update: update, contact: updateContact}));
         } else{
