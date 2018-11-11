@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ContactsService} from '../../../service/contacts.service';
 import {Update} from '@ngrx/entity';
 import {ContactUpdate} from '../../../store/contact.actions';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-contact-history',
@@ -19,7 +20,8 @@ export class ContactHistoryComponent implements OnInit {
 
   constructor(private store: Store<AppState>,
               private formBuilder: FormBuilder,
-              private contactService: ContactsService) {
+              private contactService: ContactsService,
+              private snackBar: MatSnackBar ) {
 
   }
 
@@ -58,8 +60,15 @@ export class ContactHistoryComponent implements OnInit {
             id: updateContact.id,
             changes: updateContact
           };
+          this.snackBar.open('Contact Updated', 'Update successful', {
+            duration: 9000
+          });
           this.store.dispatch(new ContactUpdate({
             update: update, contact: updateContact}));
+        } else{
+          this.snackBar.open('Error Updating', 'Error Saving Contractor', {
+            duration: 9000
+          });
         }
       }
     )
