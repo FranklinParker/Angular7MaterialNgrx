@@ -51,22 +51,13 @@ const updateContact = async (params) => {
     const updatedContact = await Contact.findById(contactData.id);
     updatedContact.lastName = contactData.lastName;
     updatedContact.firstName = contactData.firstName;
-    await updatedContact.save();
-    // const contact = new Contact({
-    //   firstName: contactData.firstName,
-    //   lastName: contactData.lastName,
-    //   email: contactData.email,
-    //   phone: contactData.phone,
-    //   contactHistories: contactData.contactHistories,
-    //   _id: contactData.id,
-    //   __v: contactData.version
-    // });
-    // const contactRec =  await Contact.updateOne({_id: contactData.id}, contact);
+    const result = await updatedContact.save();
+
     console.log('updated contact', updatedContact);
 
     return {
       success: true,
-      record: contactRec
+      record: result
     };
   } catch (e) {
     return {
