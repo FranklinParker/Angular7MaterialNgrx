@@ -52,7 +52,6 @@ export class ContactHistoryComponent implements OnInit {
 
     this.contactService.updateContact(updateContact).subscribe(
       (resp) => {
-        console.log('udate resp', resp);
         if (resp['success']) {
           const updateContact:Contact = resp['record'];
           const update: Update<Contact> = {
