@@ -41,15 +41,7 @@ export class ContactListExpandComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.store
-    //   .pipe(
-    //     select(getSelectedContact)
-    //   )
-    //   .subscribe((contact: Contact)=>{
-    //     this.expandedElement = contact;
-    //     console.log('got selected contact', contact);
-    //     this.getContactList();
-    //   });
+
     this.getContactList();
 
   }
@@ -62,7 +54,6 @@ export class ContactListExpandComponent implements OnInit {
       .subscribe((contacts: Contact[]) => {
         this.contacts = contacts;
         this.dataSource.data = this.contacts;
-        console.log('got contact list', this.expandedElement);
 
       });
 
