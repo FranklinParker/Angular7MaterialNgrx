@@ -22,7 +22,10 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(async (req, res, next)=> {
   //console.log('req', req);
   console.log('req.hostname', req.hostname);
-  console.log('req.port', req.portname);
+  console.log('req.originalUrl', req.originalUrl);
+  console.log('req.headers.host',req.headers.host);
+  console.log('req.protocol',req.protocol);
+
 
   next();
 });
