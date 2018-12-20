@@ -2,15 +2,15 @@ const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const readline = require('readline');
-
-const apiKey= ''
+const fromEmail ='no-reply@groupcollaberation.com';
+const apiKey= '';
 
 const sendUsingSendGridApi = () =>
 {
   sgMail.setApiKey(apiKey);
   const msg = {
     to: 'fparker@deliveryman.com',
-    from: 'fparker@deliveryman.com',
+    from: fromEmail,
     subject: 'Sending with SendGrid is Fun',
     text: 'and easy to do anywhere, even with Node.js',
     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
@@ -32,9 +32,9 @@ const sendEmailGeneric = async () =>
   try {
     const result = await transporter.sendMail({
       to: 'fparker@deliveryman.com',
-      from: 'fparker@deliveryman.com',
+      from: fromEmail,
       subject: 'From trans',
-      html: '<h4>hi there</h4>'
+      html: '<h4>hi there</h4> <a href="http://www.google.com">click</a>'
     });
     console.log('mail sent ', result);
   } catch(err){
